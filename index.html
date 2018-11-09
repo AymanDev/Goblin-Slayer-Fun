@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="javascripts/index.js"></script>
+</head>
+<body>
+<div id="login-panel"  class="screen screen-start show">
+    <div class="panel">
+        <h1>The Battle of Heroes</h1>
+        <ul>
+            <li>Enter your name and press the start button</li>
+            <li>Go ahead by overcoming the obstacles</li>
+            <li>Destroy the monsters in your path</li>
+            <li>Use the skills to fight monsters</li>
+            <li>Each skill uses MP, but MP regenerates by 5MP/sec</li>
+        </ul>
+        <form id="login-menu">
+            <input id="username-field" type="text" placeholder="Enter your name, Hero!">
+            <button id="submit-login" type="button">Next!</button>
+        </form>
+    </div>
+</div>
+<div class="screen screen-game">
+    <div id="game-field">
+      <div id="background" class="screen screen-game"></div>
+      <div id="elf" class="entity elf-idle"></div>
+      <div id="player" class="entity player-idle"></div>
+    </div>
+
+    <div class="game-panel game-panel-user">
+        <div id="username" class="user-info">Username</div>
+        <div id="health" class="panel-xp">
+            <div class="score-value">
+                <span id="health-text">100</span>
+            </div>
+        </div>
+        <div class="panel-mp">
+            <div class="score-value">
+                <span>100</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-panel game-panel-scores">
+        <div class="timer">Time: 00:00</div>
+        <div class="kills">Killed: 0</div>
+    </div>
+
+    <div class="game-panel game-panel-skills">
+        <img src="assets/img/skill-sword.png" alt="sword">
+        <img src="assets/img/skill-shield.png" alt="shield">
+        <img src="assets/img/skill-sword-3.png" alt="sword 3">
+        <img src="assets/img/skill-sword-8.png" alt="sword 8">
+    </div>
+</div>
+<div id="ranking-screen" class="screen screen-ranking">
+    <div class="panel">
+        <h1>Rating of Heroes!</h1>
+        <table id="leaderboard">
+          <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Killed mosters</th>
+                <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id='leaderboard-values'>
+
+          </tbody>
+        </table>
+        <form>
+          <button id="start-again" type="button">Start again!</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
