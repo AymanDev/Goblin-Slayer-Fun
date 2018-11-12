@@ -207,6 +207,11 @@ button {
 .elf-moving{
   background-image: url("../img/enemies/elf/gifs/run.gif");
 }
+.elf-attack{
+  background-image: url("../img/enemies/elf/gifs/attack2_loop.gif");
+}
+
+
 
 #background{
   position: absolute;

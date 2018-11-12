@@ -81,6 +81,7 @@ $(document).ready(()=>{
   let elfMoving = false;
   let elfLeftDirection = false;
   let elfAttackCooldown = false;
+  let elfAttack = false;
 
   setInterval(updateElf, 100);
   function updateElf(){
@@ -88,11 +89,13 @@ $(document).ready(()=>{
     if(collision(player, elf)){
       if(!elfAttackCooldown){
         //damagePlayer(25);
+        elfAttack = true;
       }
       elfAttackCooldown = true;
 
       setTimeout(()=>{
         elfAttackCooldown = false;
+        elfAttack = false;
       }, 1000);
     }
 
@@ -120,6 +123,11 @@ $(document).ready(()=>{
       elf.addClass('left-direction');
     } else {
       elf.removeClass('left-direction');
+    }
+    if(elfAttack){
+      elf.addClass('elf-attack');
+    } else {
+      elf.removeClass('elf-attack');
     }
 
     elf.stop();
@@ -196,6 +204,10 @@ $(document).ready(()=>{
     if(gamePaused) return;
     if(playerHealth < 100){
       playerHealth++;
+    }
+
+    if(playerLeft >= 740){
+      alert('THE END');
     }
   }
 
