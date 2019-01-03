@@ -194,7 +194,7 @@ button {
   background-image: url("../img/knight/gifs/attack1_loop.gif");
 }
 
-#elf {
+.elf {
   width: 170px;
 }
 .elf-left{

@@ -75,64 +75,70 @@ $(document).ready(()=>{
   const background = $('#background');
   let backgroundLeft = 4779;
 
-  const elf = $('#elf');
-  let elfLeft = 200;
-  const elfSpeed = 5;
-  let elfMoving = false;
-  let elfLeftDirection = false;
-  let elfAttackCooldown = false;
-  let elfAttack = false;
+setInterval(()=>{
+  $('.elf').each((index)=>{
+    const elf = $(this);
+    let elfLeft = 200;
+    const elfSpeed = 5;
+    let elfMoving = false;
+    let elfLeftDirection = false;
+    let elfAttackCooldown = false;
+    let elfAttack = false;
 
-  setInterval(updateElf, 100);
-  function updateElf(){
-    if(gamePaused) return;
-    if(collision(player, elf)){
-      if(!elfAttackCooldown){
-        //damagePlayer(25);
-        elfAttack = true;
+    setInterval(updateElf, 100);
+    function updateElf(){
+      if(gamePaused) return;
+      if(collision(player)){
+        if(!elfAttackCooldown){
+          //damagePlayer(25);
+          elfAttack = true;
+        }
+        elfAttackCooldown = true;
+
+        setTimeout(()=>{
+          elfAttackCooldown = false;
+          elfAttack = false;
+        }, 1000);
       }
-      elfAttackCooldown = true;
 
-      setTimeout(()=>{
-        elfAttackCooldown = false;
-        elfAttack = false;
-      }, 1000);
-    }
-
-    if(elfLeft > Math.abs(background.offset().left) + playerLeft + 50){
-      elfLeft -= elfSpeed;
-      elfMoving = true;
-      elfLeftDirection = false;
-    } else if(elfLeft < Math.abs(background.offset().left) + playerLeft) {
-      elfLeft += elfSpeed;
-      elfMoving = true;
-      elfLeftDirection = true;
-    } else {
-      elfMoving = false;
-    }
+      if(elfLeft > Math.abs(background.offset().left) + playerLeft + 50){
+        elfLeft -= elfSpeed;
+        elfMoving = true;
+        elfLeftDirection = false;
+      } else if(elfLeft < Math.abs(background.offset().left) + playerLeft) {
+        elfLeft += elfSpeed;
+        elfMoving = true;
+        elfLeftDirection = true;
+      } else {
+        elfMoving = false;
+      }
 
 
-    if(elfMoving){
-      elf.addClass('elf-moving');
-      elf.removeClass('elf-idle');
-    } else {
-      elf.addClass('elf-idle');
-      elf.removeClass('elf-moving');
-    }
-    if(elfLeftDirection){
-      elf.addClass('left-direction');
-    } else {
-      elf.removeClass('left-direction');
-    }
-    if(elfAttack){
-      elf.addClass('elf-attack');
-    } else {
-      elf.removeClass('elf-attack');
-    }
+      if(elfMoving){
+        elf.addClass('elf-moving');
+        elf.removeClass('elf-idle');
+      } else {
+        elf.addClass('elf-idle');
+        elf.removeClass('elf-moving');
+      }
+      if(elfLeftDirection){
+        elf.addClass('left-direction');
+      } else {
+        elf.removeClass('left-direction');
+      }
+      if(elfAttack){
+        elf.addClass('elf-attack');
+      } else {
+        elf.removeClass('elf-attack');
+      }
 
-    elf.stop();
-    elf.animate({left: background.offset().left + elfLeft}, 100, 'linear');
-  }
+      elf.stop();
+      elf.animate({left: background.offset().left + elfLeft}, 100, 'linear');
+    }
+  });
+}, 100);
+
+
 
   $(document).keydown((e)=>{
     if(gamePaused) return;
@@ -161,9 +167,10 @@ $(document).ready(()=>{
       setTimeout(()=>{
         playerAttack1 = false;
       },1000);
-      if(collision(player, elf)){
+      const enemy = collision(player);
+      if(enemy){
         setTimeout(()=>{
-          elf.hide();
+          enemy.hide();
         },600);
       }
     }
@@ -240,21 +247,24 @@ $(document).ready(()=>{
     $('#username').text(value);
   }
 
-  function collision($div1, $div2) {
-      const x1 = $div1.offset().left;
-      const y1 = $div1.offset().top;
-      const h1 = $div1.outerHeight(true);
-      const w1 = $div1.outerWidth(true);
-      const b1 = y1 + h1;
-      const r1 = x1 + w1;
-      const x2 = $div2.offset().left;
-      const y2 = $div2.offset().top;
-      const h2 = $div2.outerHeight(true);
-      const w2 = $div2.outerWidth(true);
-      const b2 = y2 + h2;
-      const r2 = x2 + w2;
+  function collision($div1) {
+      $('.enemy').each((index, el)=>{
+        const element = $(el);
+        const x1 = $div1.offset().left;
+        const y1 = $div1.offset().top;
+        const h1 = $div1.outerHeight(true);
+        const w1 = $div1.outerWidth(true);
+        const b1 = y1 + h1;
+        const r1 = x1 + w1;
+        const x2 = element.offset().left;
+        const y2 = element.offset().top;
+        const h2 = element.outerHeight(true);
+        const w2 = element.outerWidth(true);
+        const b2 = y2 + h2;
+        const r2 = x2 + w2;
 
-      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
-      return true;
+        if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+        return true;
+      });
     }
 });
