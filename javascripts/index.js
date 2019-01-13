@@ -142,26 +142,29 @@ setInterval(()=>{
 
   $(document).keydown((e)=>{
     if(gamePaused) return;
+
     if(e.which == 68){
       leftDirection = false;
       moving = true;
 
-      if(playerLeft > $(gameField).width() / 2 && backgroundLeft > -3300){
+      if(playerLeft > window.innerWidth / 2 && backgroundLeft > -3300){
         backgroundLeft -= backgroundSpeed;
-      } else if(playerLeft < $(gameField).width() - 200){
-        playerLeft += playerSpeed;
       }
+      playerLeft += playerSpeed;
     }
+
     if(e.which == 65){
       leftDirection = true;
       moving = true;
 
-      if(playerLeft < 50 && backgroundLeft < 4779){
+      if(backgroundLeft < 4779){
         backgroundLeft += backgroundSpeed;
-      }else if(playerLeft > 49){
+      }
+      if(playerLeft > -50){
         playerLeft -= playerSpeed;
       }
     }
+
     if(e.which == 49){
       playerAttack1 = true;
       setTimeout(()=>{
@@ -213,9 +216,9 @@ setInterval(()=>{
       playerHealth++;
     }
 
-    if(playerLeft >= 740){
+    /*if(playerLeft >= 740){
       alert('THE END');
-    }
+    }*/
   }
 
   setInterval(updatePlayerAnimation, 10);
