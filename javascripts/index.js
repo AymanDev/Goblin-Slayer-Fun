@@ -1,3 +1,4 @@
+
 $(document).ready(()=>{
   let nickname;
   let time = 0;
@@ -215,10 +216,6 @@ setInterval(()=>{
     if(playerHealth < 100){
       playerHealth++;
     }
-
-    /*if(playerLeft >= 740){
-      alert('THE END');
-    }*/
   }
 
   setInterval(updatePlayerAnimation, 10);
