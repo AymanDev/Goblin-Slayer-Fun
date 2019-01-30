@@ -5,9 +5,11 @@
   <title>Game</title>
   <link rel="stylesheet" href="assets/css/base.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="javascripts/anime.js"></script>
   <!--<script src="javascripts/index.js"></script>-->
+  <!--<script src="javascripts/coffee.js"></script>-->
   <!--<script src="javascripts/goblin.js"></script>-->
-  <script src="javascripts/coffee.js"></script>
+  <!--<script src="javascripts/coffee.js"></script>-->
 </head>
 <body>
 <div id="login-panel" class="screen screen-start show">
@@ -27,24 +29,15 @@
   </div>
 </div>
 <div class="screen screen-game">
-  <!--Игровое поле-->
   <div id="game-field">
-    <!--Фон игрового поля-->
     <div id="background" class="screen screen-game">
-      <!--Список противников-->
-      <div id="entities">
-        <!--Эльф-->
-        <div class="entity enemy elf elf-idle"></div>
-        <!--Эльф-->
-        <div class="entity enemy elf elf-idle"></div>
-        <!--Эльф-->
+      <div id="enemies">
         <div class="entity enemy elf elf-idle"></div>
       </div>
-      <!--Конец списка противников-->
-      <!--Игрок-->
       <div id="player" class="entity player-idle"></div>
     </div>
   </div>
+
 
   <div class="game-panel game-panel-user">
     <div id="username" class="user-info">Username</div>

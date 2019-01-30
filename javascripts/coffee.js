@@ -2,7 +2,7 @@
 const playerPreset = {
   nickname: String,
   x: Number,
-  left: true,
+  left: false,
   speed: 10
 };
 
@@ -23,7 +23,7 @@ $(document).ready(() => {
       return;
     }
 
-    //Закрываем панели
+    // Закрываем панели
     $('#login-panel').toggle();
     $('#ranking-screen').toggle();
 
@@ -52,7 +52,7 @@ $(document).ready(() => {
       player.left = false;
       player.x += player.speed;
     }
+
+    $('#player').animate({left: player.x}, 10, 'linear');
   });
-
-
 });
